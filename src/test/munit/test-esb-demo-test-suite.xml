@@ -26,10 +26,11 @@
 			</munit-tools:spy>
 		</munit:behavior>
 		<munit:execution >
+			<set-payload value="#['HI']" doc:name="Set Payload" doc:id="a2583fef-bd83-44d3-8a38-50f7a56c5499" />
 			<flow-ref doc:name="Flow-ref to test-esb-demoFlow" doc:id="0fa97bf8-9720-4bb0-ad7d-04fe3b5d76d0" name="test-esb-demoFlow"/>
 		</munit:execution>
 		<munit:validation >
-			<munit-tools:assert-equals doc:name="Assert equals" doc:id="49d8b945-b8d8-4876-8d8a-b5c70538a592" actual="#[payload as String]" expected="#[payload as String  startsWith 'I']" message=" $$$$$$$$$$$ value should starts with I $$$$$$$$$$$$"/>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="49d8b945-b8d8-4876-8d8a-b5c70538a592" actual="#[payload as String]" expected="#['calling HI']" message=" $$$$$$$$$$$ value should starts with I $$$$$$$$$$$$"/>
 			<munit-tools:assert-that doc:name="Assert that" doc:id="6180d356-2f8f-4d8c-ba61-2ceeb3caf281" is="#[MunitTools::notNullValue()]" message="%%%%%%%%%%%%%Value should not  be null" expression="#[payload]"/>
 		</munit:validation>
 	</munit:test>

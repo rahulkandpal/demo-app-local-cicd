@@ -5,11 +5,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="08db2d20-9ff3-41fd-8f00-bd4466bd381a" >
-		<http:listener-connection host="0.0.0.0" port="8080" />
+		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
 	<flow name="test-esb-demoFlow" doc:id="789c275f-046c-4435-9df4-418a1b3c2197" >
 		<http:listener doc:name="Listener" doc:id="a6d7fc8b-bffd-4601-9a46-03a73bdde5ed" config-ref="HTTP_Listener_config" path="/esb"/>
-		<set-payload value='#["IHI"]' doc:name="Set Payload" doc:id="f88f546a-2e5c-4c91-b328-fb835d5bffce" />
 		<choice doc:name="Choice" doc:id="7fdca814-aa1c-4090-b734-75ca0a917891" >
 			<when expression='#[payload=="HI"]'>
 				<flow-ref doc:name="Flow Reference" doc:id="dbbf5cdd-4627-41ee-8a9f-e6413f2ce9eb" name="HI-Flow"/>
