@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="test-esb-demo-test-suite.xml" />
+	<munit:test name="test-esb-demo-test-suite-test-esb-demoFlowTest" doc:id="16a2c3f0-7250-4cde-8ff8-b310c35312ba" description="Test">
+		<munit:behavior >
+			<munit-tools:spy doc:name="Spy" doc:id="aaebd390-cbe7-4333-b081-d2032939abfa" processor="set-payload">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Set Payload" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="f88f546a-2e5c-4c91-b328-fb835d5bffce" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:before-call >
+					<logger level="INFO" doc:name="Logger" doc:id="113b5d88-86d3-48f1-998d-0208f23267c7" message="################################################Calling  choice####################################### "/>
+					<logger level="INFO" doc:name="Logger" doc:id="3ad708e6-4ef0-418a-a86d-120a9389b1e1" message="#[payload]"/>
+				</munit-tools:before-call>
+				<munit-tools:after-call >
+					<logger level="INFO" doc:name="Logger" doc:id="1285cb73-d2da-47e6-a711-00f5d24d76b3" message="###########################################3exiting choice#############################################"/>
+					<logger level="INFO" doc:name="Logger" doc:id="aa8cbfb0-c9f0-482f-a6a0-d4b2c054e13c" message="#[payload]"/>
+				</munit-tools:after-call>
+			</munit-tools:spy>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to test-esb-demoFlow" doc:id="0fa97bf8-9720-4bb0-ad7d-04fe3b5d76d0" name="test-esb-demoFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="49d8b945-b8d8-4876-8d8a-b5c70538a592" actual="#[payload as String]" expected="#[payload as String  startsWith 'I']" message=" $$$$$$$$$$$ value should starts with I $$$$$$$$$$$$"/>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="6180d356-2f8f-4d8c-ba61-2ceeb3caf281" is="#[MunitTools::notNullValue()]" message="%%%%%%%%%%%%%Value should not  be null" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

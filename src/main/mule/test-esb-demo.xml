@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="08db2d20-9ff3-41fd-8f00-bd4466bd381a" >
+		<http:listener-connection host="0.0.0.0" port="8080" />
+	</http:listener-config>
+	<flow name="test-esb-demoFlow" doc:id="789c275f-046c-4435-9df4-418a1b3c2197" >
+		<http:listener doc:name="Listener" doc:id="a6d7fc8b-bffd-4601-9a46-03a73bdde5ed" config-ref="HTTP_Listener_config" path="/esb"/>
+		<set-payload value='#["IHI"]' doc:name="Set Payload" doc:id="f88f546a-2e5c-4c91-b328-fb835d5bffce" />
+		<choice doc:name="Choice" doc:id="7fdca814-aa1c-4090-b734-75ca0a917891" >
+			<when expression='#[payload=="HI"]'>
+				<flow-ref doc:name="Flow Reference" doc:id="dbbf5cdd-4627-41ee-8a9f-e6413f2ce9eb" name="HI-Flow"/>
+			</when>
+			<otherwise >
+				<flow-ref doc:name="Flow Reference" doc:id="b9de748f-103e-482d-a92b-4034465692fc" name="BYE-flow"/>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="HI-Flow" doc:id="2c487ee5-96f8-4cb9-84d0-091d3ada6e2c" >
+		<logger level="INFO" doc:name="Logger" doc:id="04a878fa-3e83-47ac-8613-d52bfaaffde2" message="calling HI"/>
+		<set-payload value="calling HI " doc:name="Set Payload" doc:id="b2716875-70a1-442e-a861-af30462967bd" />
+	</flow>
+	<flow name="BYE-flow" doc:id="01dc6d21-eb97-4bc2-b538-f52400b41e5b" >
+		<logger level="INFO" doc:name="Logger" doc:id="14c74f3b-4aa6-4fb7-a3b3-c24fd91285bd" message="calling BYE"/>
+		<set-payload value="calling BYE" doc:name="Set Payload" doc:id="3b1c4729-61fe-4972-a56d-3a804359aa53" />
+	</flow>
+</mule>
