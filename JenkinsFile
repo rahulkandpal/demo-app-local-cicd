@@ -8,6 +8,12 @@ pipeline {
                 bat "mvn clean compile"
             }
         }
+        stage('Starting Runtime') {
+            steps {
+                bat "E:\Rahul\software\mule-enterprise-standalone-4.3.0\bin\mule.bat"
+            }
+        }       
+            	
         stage('test Stage') {
             steps {
                 bat "mvn test -DmuleDeploy"
