@@ -10,7 +10,7 @@ pipeline {
         }
         stage('test Stage') {
             steps {
-            	bat "mule"
+            	bat "E:\Rahul\software\mule-enterprise-standalone-4.3.0\bin\mule.bat"
                 bat "mvn test -DmuleDeploy"
             }
         }        
