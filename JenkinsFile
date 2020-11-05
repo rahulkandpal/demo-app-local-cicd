@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Starting Runtime') {
             steps {
-                bat "E:\Rahul\software\mule-enterprise-standalone-4.3.0\bin\mule"
+                bat "mule"
             }
         }                   	
         stage('test Stage') {
