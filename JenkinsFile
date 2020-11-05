@@ -8,9 +8,9 @@ pipeline {
                 bat "mvn clean compile"
             }
         }                  	
-        stage('test Stage') {
+        stage('deplpoy Stage') {
             steps {
-                bat "mvn test"
+                bat "mvn deploy -Dmaven.test.skip=true -DmuleDeploy"
             }
         }        
     }
