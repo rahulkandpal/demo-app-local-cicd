@@ -7,15 +7,10 @@ pipeline {
             steps {
                 bat "mvn clean compile"
             }
-        }
-        stage('Starting Runtime') {
-            steps {
-                bat "mule"
-            }
-        }                   	
+        }                  	
         stage('test Stage') {
             steps {
-                bat "mvn test -DmuleDeploy"
+                bat "mvn test"
             }
         }        
     }
